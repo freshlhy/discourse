@@ -75,7 +75,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.cook_methods
-    @cook_methods ||= Enum.new(:regular, :raw_html)
+    @cook_methods ||= Enum.new(:regular, :raw_html, :restrict)
   end
 
   def self.find_by_detail(key, value)
@@ -159,6 +159,8 @@ class Post < ActiveRecord::Base
     # For some posts, for example those imported via RSS, we support raw HTML. In that
     # case we can skip the rendering pipeline.
     return raw if cook_method == Post.cook_methods[:raw_html]
+    # reply
+    return "reply---" + raw if cook_method == Post.cook_methods[:restrict]
 
     # Default is to cook posts
     cooked = if !self.user || SiteSetting.tl3_links_no_follow || !self.user.has_trust_level?(TrustLevel[3])

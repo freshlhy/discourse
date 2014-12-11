@@ -4,12 +4,14 @@ development:
   min_messages: warning
   pool: 5
   timeout: 5000
-  host_names:
+  username: vagrant
+  password: password
+  host:
     ### Don't include the port number here. Change the "port" site setting instead, at /admin/site_settings.
     ### If you change this setting you will need to
     ###   - restart sidekiq if you change this setting
     ###   - rebake all to posts using: `RAILS_ENV=production bundle exec rake posts:rebake`
-    - "localhost"
+    192.168.199.120
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,8 +22,10 @@ test:
   min_messages: warning
   pool: 5
   timeout: 5000
-  host_names:
-    - test.localhost
+  username: vagrant
+  password: password
+  host:
+    192.168.199.120
 
 # profile db is used for benchmarking using the script/bench.rb script
 profile:

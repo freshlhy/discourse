@@ -414,6 +414,9 @@ class PostsController < ApplicationController
       result[:is_warning] = (params[:is_warning] == "true")
     end
 
+    # reply cook method using restrict
+    result[:cook_method] = Post.cook_methods[:restrict] if result[:reply_to_post_number]
+
     result
   end
 

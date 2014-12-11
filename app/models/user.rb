@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
 
   after_save :update_tracked_topics
   after_save :clear_global_notice_if_needed
-  after_save :refresh_avatar
+  # after_save :refresh_avatar
   after_save :badge_grant
 
   before_destroy do
